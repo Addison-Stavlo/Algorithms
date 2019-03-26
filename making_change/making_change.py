@@ -2,7 +2,14 @@
 
 import sys
 
-# denominations 1 5 10 25 50
+# ways to get values up to 10
+# 1 - with only pennies
+# [1,1,1,1,1,1,1,1,1,1,1]
+# 2 - with pennies and nickels
+# [1,1,1,1,1,2,2,2,2,2,2]
+# 3 - with pennies and nickels and dimes
+# [1,1,1,1,1,2,2,2,2,2,3]
+#  use this pattern to build the solution
 
 
 def making_change(amount, denominations):
