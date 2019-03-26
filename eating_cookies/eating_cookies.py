@@ -37,8 +37,7 @@ def eating_cookies(n, cache=None):
         sol1.append(2)
         solutions.append(sol1)
         sol2 = [3]*most_3s
-        sol2.append(1)
-        sol2.append(1)
+        sol2 = sol2 + [1, 1]
         solutions.append(sol2)
 
     # extract possible solutions
@@ -51,18 +50,22 @@ def eating_cookies(n, cache=None):
                     newSol3 = solution[:]
                     newSol3.remove(3)
                     newSol3.remove(1)
-                    newSol3.append(2)
-                    newSol3.append(2)
+                    newSol3 = newSol3 + [2, 2]
+                    newSol3.sort(reverse=True)
+                    if newSol3 not in solutions:
+                        solutions.append(newSol3)
+                if solution.count(2) > 0:
+                    newSol3 = solution[:]
+                    newSol3.remove(3)
+                    newSol3.remove(2)
+                    newSol3 = newSol3 + [1, 1, 1, 1, 1]
                     newSol3.sort(reverse=True)
                     if newSol3 not in solutions:
                         solutions.append(newSol3)
                 newSol1.remove(3)
-                newSol1.append(2)
-                newSol1.append(1)
+                newSol1 = newSol1 + [2, 1]
                 newSol2.remove(3)
-                newSol2.append(1)
-                newSol2.append(1)
-                newSol2.append(1)
+                newSol2 = newSol2 + [1, 1, 1]
                 newSol1.sort(reverse=True)
                 newSol2.sort(reverse=True)
                 if newSol1 not in solutions:
@@ -78,7 +81,7 @@ def eating_cookies(n, cache=None):
     return int(num_permutations)
 
 
-print(eating_cookies(50))
+print(eating_cookies(10))
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
