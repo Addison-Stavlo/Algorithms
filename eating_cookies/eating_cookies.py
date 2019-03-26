@@ -28,6 +28,24 @@ def eating_cookies(n, cache=None):
     return sequence[n]
 
 
+def eating_cookies_iterative2(n, cache=None):
+    # iterative solution - similar to above but space complexity is constant
+    if n < 2:
+        return 1
+    if n == 2:
+        return 2
+    answer = 0
+    n_3 = 1
+    n_2 = 1
+    n_1 = 2
+    for i in range(n-2):
+        answer = n_1 + n_2 + n_3
+        n_3 = n_2
+        n_2 = n_1
+        n_1 = answer
+    return answer
+
+
 def eating_cookies_cache(n, cache=None):
     # cache recursion solution
     if cache == None:
@@ -42,6 +60,7 @@ def eating_cookies_cache(n, cache=None):
         cache[n] = eating_cookies(
             n-1, cache) + eating_cookies(n-2, cache) + eating_cookies(n-3, cache)
         return cache[n]
+
 
 # below 2 functions = solution before realizing the sequence...
 # it is faster than recursive solution,
