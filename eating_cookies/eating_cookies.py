@@ -7,6 +7,31 @@ import math
 # recursive solution
 
 
+def eating_cookies(n, cache=None):
+    # realize that sequence is s[n] = s[n-1] + s[n-2] + s[n-3] for All n > 2
+
+    # handle base cases
+    if n < 2:
+        return 1
+
+    # build placeholder list to hold sequence
+    sequence = [0] * (n + 1)
+    # initialize first 3 values
+    sequence[0] = 1
+    sequence[1] = 1
+    sequence[2] = 2
+
+    # fill in remaining sequence up to s[n]
+    for i in range(3, n + 1):
+        sequence[i] = sequence[i - 3] + sequence[i - 2] + sequence[i - 1]
+
+    return sequence[n]
+
+
+# below 2 functions = solution before realizing the sequence...
+# it is faster than recursive solution,
+# passes small tests and test for 50, fails test 100 and 500
+# not quite sure why... off by 1 quadrillionth of a percent...
 def number_of_permutations(solution):
         # for list of size N with repeating elements of amounts A, B, etc..
         # number of permutations is given by N! / (A!B!...);
@@ -17,7 +42,7 @@ def number_of_permutations(solution):
     return math.factorial(N) / (math.factorial(A)*math.factorial(B)*math.factorial(C))
 
 
-def eating_cookies(n, cache=None):
+def eating_cookies_overthought(n, cache=None):
     num_permutations = 0
     solutions = []
 
