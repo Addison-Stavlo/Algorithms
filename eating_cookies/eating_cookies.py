@@ -22,7 +22,7 @@ def eating_cookies(n, cache=None):
     solutions = []
 
     most_3s = math.floor(n/3)
-    # find solution with most 3's
+    # find solution(s) with most 3's
     if n % 3 == 0:
         sol = [3]*most_3s
         solutions.append(sol)
@@ -32,7 +32,7 @@ def eating_cookies(n, cache=None):
         sol.append(1)
         solutions.append(sol)
     else:
-      # 3s with 2x 1s or 3s with a 2
+      # 3s with 1,1 or 3s with a 2
         sol1 = [3]*most_3s
         sol1.append(2)
         solutions.append(sol1)
@@ -40,7 +40,7 @@ def eating_cookies(n, cache=None):
         sol2 = sol2 + [1, 1]
         solutions.append(sol2)
 
-    # extract possible solutions
+    # extract possible solutions from top level solutions found above
     while most_3s > 0:
         for solution in solutions:
             if solution.count(3) == most_3s:
@@ -70,13 +70,12 @@ def eating_cookies(n, cache=None):
 
         most_3s -= 1
 
+    # add the number of permutations possible for each solution
     for solution in solutions:
         num_permutations += number_of_permutations(solution)
 
     return int(num_permutations)
 
-
-print(eating_cookies(10))
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
