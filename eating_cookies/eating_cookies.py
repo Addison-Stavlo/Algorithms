@@ -44,24 +44,9 @@ def eating_cookies(n, cache=None):
     while most_3s > 0:
         for solution in solutions:
             if solution.count(3) == most_3s:
+                # assign new solutions for replacing 3 with 2,1 and 1,1,1
                 newSol1 = solution[:]
                 newSol2 = solution[:]
-                if solution.count(1) > 0:
-                    newSol3 = solution[:]
-                    newSol3.remove(3)
-                    newSol3.remove(1)
-                    newSol3 = newSol3 + [2, 2]
-                    newSol3.sort(reverse=True)
-                    if newSol3 not in solutions:
-                        solutions.append(newSol3)
-                if solution.count(2) > 0:
-                    newSol3 = solution[:]
-                    newSol3.remove(3)
-                    newSol3.remove(2)
-                    newSol3 = newSol3 + [1, 1, 1, 1, 1]
-                    newSol3.sort(reverse=True)
-                    if newSol3 not in solutions:
-                        solutions.append(newSol3)
                 newSol1.remove(3)
                 newSol1 = newSol1 + [2, 1]
                 newSol2.remove(3)
@@ -72,6 +57,16 @@ def eating_cookies(n, cache=None):
                     solutions.append(newSol1)
                 if newSol2 not in solutions:
                     solutions.append(newSol2)
+
+                # assign new solution for replacing 3 and 1 with 2,2
+                if solution.count(1) > 0:
+                    newSol3 = solution[:]
+                    newSol3.remove(3)
+                    newSol3.remove(1)
+                    newSol3 = newSol3 + [2, 2]
+                    newSol3.sort(reverse=True)
+                    if newSol3 not in solutions:
+                        solutions.append(newSol3)
 
         most_3s -= 1
 
